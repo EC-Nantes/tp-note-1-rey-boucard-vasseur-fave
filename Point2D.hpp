@@ -89,4 +89,4 @@ std::ostream& operator<<(std::ostream& os, Point2D<T> const &Point2D){
 }
  
 
-#endif /* Point2D_H_ */
+#endif /*POINT2D_H_*/
