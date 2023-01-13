@@ -21,7 +21,7 @@ class ZN : public Parcelle{
 public:
     /*Constructeurs*/
     ZN(int num, string prop, Polygone<T> forme);
-    ZN(Parcelle const& parc);
+    ZN(Parcelle<T> const& parc);
 
     /*Methods*/
     void setType(string type);
@@ -35,7 +35,7 @@ ZN<T>::ZN(int num, string prop, Polygone<T> forme) : Parcelle(num, prop, forme){
 }
 
 template<typename T>
-ZN<T>::ZN(Parcelle const& parc) : Parcelle(parc){
+ZN<T>::ZN(Parcelle<T> const& parc) : Parcelle(parc){
     this->setType("ZN");
     this->pConstructible = 0;
 }

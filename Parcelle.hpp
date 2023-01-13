@@ -45,14 +45,9 @@ public:
     void setNumero(int numero);
     void setProprietaire(string proprietaire);
     void setForme(Polygone<int> forme);
-  
-
-
-
 
     // virtual ~Parcelle();
 };
-
 
 template <typename T>
 float Parcelle<T>::calculerSurface()
@@ -140,7 +135,4 @@ void Parcelle<T>::setForme(Polygone<int> forme) {
     this->surface = calculerSurface();
 }
 
-
-
 #endif /* Parcelle_H_ */
- 
