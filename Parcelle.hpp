@@ -15,6 +15,7 @@
 
 using namespace std;
 
+template <typename T>
 class Parcelle {
 private:
    
@@ -26,7 +27,7 @@ private:
    int pConstructible;
 
 public:
-    Parcelle(int num, string prop); 
+    Parcelle(int num, string prop, Polygone<T> forme); 
     Parcelle(Parcelle const& parc);
     Parcelle(void);
     
@@ -43,12 +44,110 @@ public:
     //virtual void setType(string type) = 0;
     void setNumero(int numero);
     void setProprietaire(string proprietaire);
-    void setSurface(float surface);
     void setForme(Polygone<int> forme);
-    void setPConstructible(int pConstructible);
-    
+  
+
+
+
+
     // virtual ~Parcelle();
 };
+
+
+template <typename T>
+float Parcelle<T>::calculerSurface()
+{
+    float surface = 0;
+    vector<Point2D<int>> sommets = this->forme.getSommets();
+    //std::cout << sommets.size();
+    int nombre_sommets = sommets.size();
+    for (int i=0; i<nombre_sommets-1; i++){
+        surface += sommets[i].getX()*sommets[i+1].getY() - sommets[i+1].getX()*sommets[i].getY();
+    }
+    //affiche sommets 
+    // std::cout<< "Sommet -1 get x ="<<sommets[nombre_sommets-1].getX()<<std::endl;
+    // std::cout<< "Sommet -1 get y ="<<sommets[nombre_sommets-1].getY()<<std::endl;
+
+
+    // surface += sommets[nombre_sommets-1].getX()*sommets[0].getY() - sommets[0].getX()*sommets[nombre_sommets-1].getY();
+    surface = surface/2;
+    std::cout << "surface : " << surface << endl;
+    return surface;
+}
+
+//contructors
+template <typename T>
+Parcelle<T>::Parcelle(int num, string prop, Polygone<T> forme)
+{
+    this->numero = num;
+    this->proprietaire = prop;
+    this->surface = calculerSurface();
+    this->pConstructible = 0;
+    this->type = "Parcelle";
+    this->forme =  forme;
+}
+
+template <typename T>
+Parcelle<T>::Parcelle(Parcelle const& parc) {
+    this->numero = parc.getNumero();
+    this->proprietaire = parc.getProprietaire();
+    this->surface = parc.getSurface();
+    this->pConstructible = parc.getPConstructible();
+    this->type = parc.getType();
+    this->forme = parc.getForme();
+}
+
+template <typename T>
+Parcelle<T>::Parcelle(void) {
+    this->numero = 0;
+    this->proprietaire = "";
+    this->surface = 0;
+    this->pConstructible = 0;
+    this->type = "Parcelle";
+}
+
+//getters 
+template <typename T>
+string Parcelle<T>::getType() const {
+    return this->type;
+}
+template <typename T>
+int Parcelle<T>::getNumero() const {
+    return this->numero;
+}
+template <typename T>
+string Parcelle<T>::getProprietaire() const {
+    return this->proprietaire;
+}
+template <typename T>
+float Parcelle<T>::getSurface() const {
+    return this->surface;
+}
+template <typename T>
+Polygone<int> Parcelle<T>::getForme() const {
+    return this->forme;
+}
+template <typename T>
+int Parcelle<T>::getPConstructible() const {
+    return this->pConstructible;
+}
+
+//setters
+template <typename T>
+void Parcelle<T>::setNumero(int numero) {
+    this->numero = numero;
+}
+template <typename T>
+void Parcelle<T>::setProprietaire(string proprietaire) {
+    this->proprietaire = proprietaire;
+}
+
+template <typename T>
+void Parcelle<T>::setForme(Polygone<int> forme) {
+    this->forme = forme;
+    this->surface = calculerSurface();
+}
+
 
 
 #endif /* Parcelle_H_ */
