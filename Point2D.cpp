@@ -87,6 +87,3 @@ std::ostream& operator<<(std::ostream& os, Point2D<T> const &Point2D){
 	os << "coordonnees :" << "x : " << Point2D.getX() << "  y : " << Point2D.getY();
 	return os;
 }
- 
-
-#endif /* Point2D_H_ */
