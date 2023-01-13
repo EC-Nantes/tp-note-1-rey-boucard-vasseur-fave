@@ -11,45 +11,46 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-//#include "Polygone.hpp"
+#include "Polygone.hpp"
 
 using namespace std;
 
 class Parcelle {
 private:
-   float calculerSurface();
+   
    string type;
    int numero;
    string proprietaire;
    float surface;
-   //Polygone<int> forme;
+   Polygone<int> forme;
    int pConstructible;
 
 public:
-    Parcelle(int num, string prop); //Polygone<int> forme
-    Parcelle(Parcelle parc);
+    Parcelle(int num, string prop); 
+    Parcelle(Parcelle const& parc);
     Parcelle(void);
-
-    #getters
+    
+    float calculerSurface();
+    //getters
     string getType() const;
     int getNumero() const;
     string getProprietaire() const;
     float getSurface() const;
-    //Polygone<int> getForme() const;
+    Polygone<int> getForme() const;
     int getPConstructible() const;
 
-    #setters
-    virtual void setType(string type) = 0;
+    //setters
+    //virtual void setType(string type) = 0;
     void setNumero(int numero);
     void setProprietaire(string proprietaire);
     void setSurface(float surface);
-    //void setForme(Polygone<int> forme);
+    void setForme(Polygone<int> forme);
     void setPConstructible(int pConstructible);
 
 
 
 
-    virtual ~Parcelle();
+    // virtual ~Parcelle();
 
 
 };
