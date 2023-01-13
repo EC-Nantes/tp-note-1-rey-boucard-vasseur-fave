@@ -5,8 +5,8 @@
  *      Author: REY Maxime, BOUCARD Romain, FAVE Jonathan, VASSEUR Francois
  */
 
-#ifndef Point2D_H_
-#define Point2D_H_
+#ifndef POINT2D_H
+#define POINT2D_H
 
 #include <iostream>
 #include <fstream>
@@ -84,9 +84,8 @@ void Point2D<T>::translater(T a, T b){
 
 template<typename T>
 std::ostream& operator<<(std::ostream& os, Point2D<T> const &Point2D){
-	os << "coordonnees :" << "x : " << Point2D.getX() << "  y : " << Point2D.getY();
+	os << "x = " << Point2D.getX() << ", y = " << Point2D.getY() << ";" << std::endl;
 	return os;
 }
- 
 
-#endif /*POINT2D_H_*/
+#endif /*POINT2D_H*/

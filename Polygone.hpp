@@ -73,7 +73,7 @@ void Polygone<T>::addPoint(Point2D<T> p){
 
 template<typename T>
 void Polygone<T>::translate(T x, T y){
-    for(std::vector<T>::iterator i = this->sommets_.begin(); i != this->sommets_.end(); i++){
+    for(auto i = this->sommets_.begin(); i != this->sommets_.end(); i++){
         this->sommets_[i].x += x;
         this->sommets_[i].y += y;
     }
@@ -83,10 +83,10 @@ template <typename T>
 std::ostream& operator<<(std::ostream &output, Polygone<T> const &p)
 {
     output << "Le polygone a pour sommets : {" << std::endl;
-    for(std::vector<T>::iterator i = p->sommets_.begin(); i != p->sommets_.end(); i++){
-        output << "x = " << p->sommets_[i].x << ", y = " << p->sommets_[i].y << ";" << std::endl;
+    for(auto i = p.sommets_.begin(); i != p.sommets_.end(); i++){
+        output << *i;
     }
-    output << "}" << std::endl;
+    output << "}";
     return output;
 }
 
