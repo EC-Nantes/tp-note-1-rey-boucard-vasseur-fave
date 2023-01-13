@@ -1,8 +1,8 @@
 /*
  * Point2D.hpp
  *
- *  Created on: 07 dec. 2022
- *      Author: REY Maxime, BOUCARD Romain
+ *  Created on: 13 jan. 2023
+ *      Author: REY Maxime, BOUCARD Romain, FAVE Jonathan, VASSEUR Francois
  */
 
 #ifndef Point2D_H_
