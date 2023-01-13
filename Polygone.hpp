@@ -90,4 +90,4 @@ std::ostream& operator<<(std::ostream &output, Polygone<T> const &p)
     return output;
 }
 
-#endif /* RECTANGLE_H */
+#endif /*POLYGONE_HPP*/
