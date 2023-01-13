@@ -60,17 +60,12 @@ float Parcelle<T>::calculerSurface()
 {
     float surface = 0;
     vector<Point2D<int>> sommets = this->forme.getSommets();
-    //std::cout << sommets.size();
     int nombre_sommets = sommets.size();
     for (int i=0; i<nombre_sommets-1; i++){
         surface += sommets[i].getX()*sommets[i+1].getY() - sommets[i+1].getX()*sommets[i].getY();
     }
     //affiche sommets 
-    // std::cout<< "Sommet -1 get x ="<<sommets[nombre_sommets-1].getX()<<std::endl;
-    // std::cout<< "Sommet -1 get y ="<<sommets[nombre_sommets-1].getY()<<std::endl;
-
-
-    // surface += sommets[nombre_sommets-1].getX()*sommets[0].getY() - sommets[0].getX()*sommets[nombre_sommets-1].getY();
+    surface += sommets[nombre_sommets-1].getX()*sommets[0].getY() - sommets[0].getX()*sommets[nombre_sommets-1].getY();
     surface = surface/2;
     std::cout << "surface : " << surface << endl;
     return surface;
@@ -82,10 +77,9 @@ Parcelle<T>::Parcelle(int num, string prop, Polygone<T> forme)
 {
     this->numero = num;
     this->proprietaire = prop;
-    this->surface = calculerSurface();
-    this->pConstructible = 0;
-    this->type = "Parcelle";
     this->forme =  forme;
+    this->surface = calculerSurface();
+    this->type = "Parcelle";
 }
 
 template <typename T>
@@ -93,7 +87,6 @@ Parcelle<T>::Parcelle(Parcelle const& parc) {
     this->numero = parc.getNumero();
     this->proprietaire = parc.getProprietaire();
     this->surface = parc.getSurface();
-    this->pConstructible = parc.getPConstructible();
     this->type = parc.getType();
     this->forme = parc.getForme();
 }
@@ -103,7 +96,6 @@ Parcelle<T>::Parcelle(void) {
     this->numero = 0;
     this->proprietaire = "";
     this->surface = 0;
-    this->pConstructible = 0;
     this->type = "Parcelle";
 }
 
