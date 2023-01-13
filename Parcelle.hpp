@@ -46,13 +46,8 @@ public:
     void setSurface(float surface);
     void setForme(Polygone<int> forme);
     void setPConstructible(int pConstructible);
-
-
-
-
+    
     // virtual ~Parcelle();
-
-
 };
 
 
