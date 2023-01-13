@@ -54,7 +54,7 @@ void test_calculSurface()
     listeSommets.push_back(p4);
 
     Polygone<int> Poly1(listeSommets);
-    Parcelle parc(1, "toto");
+    Parcelle<int> parc(1, "toto", Poly1);
     parc.setForme(Poly1);
     std::cout << parc.getSurface() << std::endl;
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
