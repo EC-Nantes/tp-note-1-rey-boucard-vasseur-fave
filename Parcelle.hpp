@@ -41,7 +41,7 @@ public:
     int getPConstructible() const;
 
     //setters
-    //virtual void setType(string type) = 0;
+    virtual void setType(string type) = 0;
     void setNumero(int numero);
     void setProprietaire(string proprietaire);
     void setForme(Polygone<int> forme);
@@ -61,7 +61,7 @@ float Parcelle<T>::calculerSurface()
     //affiche sommets 
     surface += sommets[nombre_sommets-1].getX()*sommets[0].getY() - sommets[0].getX()*sommets[nombre_sommets-1].getY();
     surface = surface/2;
-    std::cout << "surface : " << surface << endl;
+    std::cout << "Surface : " << surface << endl;
     return surface;
 }
 

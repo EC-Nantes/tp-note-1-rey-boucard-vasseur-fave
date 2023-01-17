@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "Parcelle.hpp"
+#include "ZU.hpp"
 
 
 void test_creationPoint()
@@ -56,7 +57,7 @@ void test_calculSurface()
 
     Polygone<int> Poly1(listeSommets);
     std::cout << Poly1 << std::endl;
-    Parcelle<int> parc(1, "toto", Poly1);
+    //Parcelle<int> parc(1, "toto", Poly1);
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
