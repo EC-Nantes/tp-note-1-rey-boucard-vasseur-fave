@@ -17,7 +17,9 @@ using namespace std;
 
 template <typename T>
 class Parcelle {
-protected:
+private:
+   
+
    int numero;
    string proprietaire;
    float surface;
