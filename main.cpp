@@ -61,10 +61,28 @@ void test_calculSurface()
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
+void testZU(){
+    Point2D<int> p1(3, 3);
+    Point2D<int> p2(1, 3);
+    Point2D<int> p3(1, 1);
+    Point2D<int> p4(3, 1);
+    vector<Point2D<int>> listeSommets;
+    listeSommets.push_back(p1);
+    listeSommets.push_back(p2);
+    listeSommets.push_back(p3);
+    listeSommets.push_back(p4);
+
+    Polygone<int> Poly1(listeSommets);
+    ZU<int> ZoneU(12, "Pierre Dupont", Poly1);
+    std::cout << ZoneU.getsurfaceConstructible() << endl;
+    std::cout << ZoneU.getsurfaceConstruite() << endl;
+}
+
 int main() {
-    test_creationPoint();
-    test_creationPolygone();
-    test_calculSurface();
+    //test_creationPoint();
+    //test_creationPolygone();
+    //test_calculSurface();
+    testZU();
     return 0;
 }
 

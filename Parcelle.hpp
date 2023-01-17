@@ -19,11 +19,14 @@ template <typename T>
 class Parcelle {
 private:
    
-   string type;
+
    int numero;
    string proprietaire;
    float surface;
    Polygone<int> forme;
+
+protected:
+   string type;
    int pConstructible;
 
 public:

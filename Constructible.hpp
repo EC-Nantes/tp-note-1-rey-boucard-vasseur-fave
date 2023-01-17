@@ -10,7 +10,7 @@
 
 class Constructible{
 public:
-    virtual double surfaceConstructible() = 0;
+    virtual void surfaceConstructible() = 0;
 };
 
 #endif /*CONSTRUCTIBLE_HPP*/
