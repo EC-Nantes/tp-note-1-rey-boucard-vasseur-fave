@@ -17,15 +17,11 @@ using namespace std;
 
 template <typename T>
 class Parcelle {
-private:
-   
-
+protected:
    int numero;
    string proprietaire;
    float surface;
    Polygone<int> forme;
-
-protected:
    string type;
    int pConstructible;
 
