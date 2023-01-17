@@ -18,8 +18,6 @@ using namespace std;
 template <typename T>
 class Parcelle {
 private:
-   
-
    int numero;
    string proprietaire;
    float surface;

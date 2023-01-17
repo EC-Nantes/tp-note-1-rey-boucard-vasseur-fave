@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "Parcelle.hpp"
 #include "ZU.hpp"
+#include "ZA.hpp"
+#include "ZN.hpp"
 
 
 void test_creationPoint()
@@ -78,11 +80,29 @@ void testZU(){
     std::cout << ZoneU.getsurfaceConstruite() << endl;
 }
 
+void testZA(){
+    Point2D<int> p1(3, 3);
+    Point2D<int> p2(1, 3);
+    Point2D<int> p3(1, 1);
+    Point2D<int> p4(3, 1);
+    vector<Point2D<int>> listeSommets;
+    listeSommets.push_back(p1);
+    listeSommets.push_back(p2);
+    listeSommets.push_back(p3);
+    listeSommets.push_back(p4);
+
+    Polygone<int> Poly1(listeSommets);
+    ZA<int> ZoneA(12, "Pierre Dupont", "Ble", Poly1);
+    std::cout << ZoneA.getsurfaceConstructible() << endl;
+    std::cout << ZoneA.gettypeCulture() << endl;
+}
+
 int main() {
     //test_creationPoint();
     //test_creationPolygone();
     //test_calculSurface();
-    testZU();
+    //testZU();
+    testZA();
     return 0;
 }
 
