@@ -155,6 +155,10 @@ int main(int argc, char const *argv[]) {
     Carte<int> test("Parcelles_short.txt");
     std::cout << "Surface totale " << test.getSurfaceTotale() << std::endl;
 
+    ofstream file("backlog.txt");
+    file << test;
+
+
     
     return 0;
 }

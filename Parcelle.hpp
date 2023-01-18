@@ -60,8 +60,6 @@ float Parcelle<T>::calculerSurface()
     //affiche sommets 
     surface += sommets[nombre_sommets-1].getX()*sommets[0].getY() - sommets[0].getX()*sommets[nombre_sommets-1].getY();
     surface = surface/2;
-    
-    std::cout << "Surface  " << surface << std::endl;
     return surface;
 }
 

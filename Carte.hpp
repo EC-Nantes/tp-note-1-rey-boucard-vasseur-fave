@@ -102,9 +102,9 @@ void Carte<T>::parseFile(std::string filename){
             std::getline(file, line);
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
-            ZA<int> ZoneA(numero, proprietaire, typeCulture, Poly);
-            list_Parcelles_.push_back(&ZoneA);
-            std::cout << "ZA" << std::endl;
+            ZA<int> *ZoneA;
+            ZoneA = new ZA<int>(numero, proprietaire, typeCulture, Poly);
+            list_Parcelles_.push_back(ZoneA);
         }else if (word == "ZU"){
             typeParcelle = word;
             iss >> numero;
@@ -116,9 +116,9 @@ void Carte<T>::parseFile(std::string filename){
             std::getline(file, line);
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
-            ZU<int> ZoneU(numero, proprietaire, pConstructible, surfaceConstruite, Poly);
-            list_Parcelles_.push_back(&ZoneU);
-            std::cout << "ZU" << std::endl;
+            ZU<int> *ZoneU;
+            ZoneU = new ZU<int>(numero, proprietaire, pConstructible, surfaceConstruite, Poly);
+            list_Parcelles_.push_back(ZoneU);
         }else if (word == "ZAU"){
             typeParcelle = word;
             iss >> numero;
@@ -130,9 +130,9 @@ void Carte<T>::parseFile(std::string filename){
             std::getline(file, line);
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
-            ZAU<int> ZoneAU(numero, proprietaire, pConstructible, Poly);
-            list_Parcelles_.push_back(&ZoneAU);
-            std::cout << "ZAU" << std::endl;
+            ZAU<int> *ZoneAU;
+            ZoneAU = new ZAU<int>(numero, proprietaire, pConstructible, Poly);
+            list_Parcelles_.push_back(ZoneAU);
         }else if (word == "ZN"){
             typeParcelle = word;
             iss >> numero;
@@ -144,34 +144,20 @@ void Carte<T>::parseFile(std::string filename){
             std::getline(file, line);
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
-            ZN<int> ZoneN(numero, proprietaire, Poly);
-            list_Parcelles_.push_back(&ZoneN);
-            std::cout << "ZN" << std::endl;
+            ZN<int> *ZoneN;
+            ZoneN = new ZN<int>(numero, proprietaire, Poly);
+            list_Parcelles_.push_back(ZoneN);
         }
     }
 }
 
 template<typename T>
 void Carte<T>::calculSurfaceTotale(){
-    //std::vector<Parcelle<T>*>::iterator it;
-
-     /*   std::cout << this->list_Parcelles_.size() << std::endl;
-    for (int i = 0; i < this->list_Parcelles_.size(); i++){
-        //this->surface_totale_ += list_Parcelles_[i]->getSurface();
-        std::cout << this->list_Parcelles_[i]->getType() << std::endl;
-        std::cout << this->surface_totale_ << std::endl;
-    }*/
     float surface_temp = 0.0;
-    int i =0;
     for (auto it = this->list_Parcelles_.begin(); it!=this->list_Parcelles_.end(); it++){
         surface_temp += (*it)->getSurface();
-        std::cout << this->list_Parcelles_[i]->getType() << std::endl;
-        std::cout << this->list_Parcelles_[i]->getProprietaire() << std::endl;
-        std::cout << i << std::endl;
-        i++;
     }
     this->surface_totale_ = surface_temp;
-    std::cout << this->surface_totale_ << std::endl;
     
 }
 
@@ -198,18 +184,21 @@ template<typename T>
 std::ofstream& operator<<(std::ofstream& file, Carte<T> const &C){
 	string type_parcelle;
     for(auto i = C.list_Parcelles_.begin(); i != C.list_Parcelles_.end(); i++){
-        type_parcelle = (*i).getType();
-        file << type_parcelle << " " << (*i).getNumero() << " " << (*i).getProprietaire() << " ";
+        type_parcelle = (*i)->getType();
+        file << type_parcelle << " " << (*i)->getNumero() << " " << (*i)->getProprietaire() << " ";
         if(type_parcelle == "ZU"){
-            file << (*i).getPConstructible() << " " << (*i).getsurfaceConstruite() << std::endl;
+            file << (*i)->getPConstructible() << " " /*<< (*i)->getsurfaceConstruite()*/ << std::endl;
         }
         else if(type_parcelle == "ZAU"){
-            file << (*i).getPConstructible() << std::endl;
+            file << (*i)->getPConstructible() << std::endl;
         }
         else if(type_parcelle == "ZA"){
-            file << (*i).gettypeCulture() << std::endl;
+            file << /*(*i)->gettypeCulture() <<*/ std::endl;
         }
-        file << (*i).getForme() << std::endl;
+        else if(type_parcelle == "ZN"){
+            file << std::endl;
+        }
+        file << (*i)->getForme() << std::endl;
     }
 	return file;
 }
