@@ -82,11 +82,9 @@ void Polygone<T>::translate(T x, T y){
 template <typename T>
 std::ostream& operator<<(std::ostream &output, Polygone<T> const &p)
 {
-    output << "Le polygone a pour sommets : {" << std::endl;
     for(auto i = p.sommets_.begin(); i != p.sommets_.end(); i++){
-        output << "\tp" << i-p.sommets_.begin()+1 << " : " << *i;
+        output << *i;
     }
-    output << "\t}";
     return output;
 }
 

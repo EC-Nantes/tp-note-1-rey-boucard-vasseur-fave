@@ -67,11 +67,13 @@ void ZAU<T>::surfaceConstructible(void){
 template <typename T>
 std::ostream& operator<<(std::ostream &output, ZAU<T> const &parc)
 {
-    output << "Parcelle n°" << parc.getNumero() << " :" << std::endl;
+    output << "Parcelle n*" << parc.getNumero() << " :" << std::endl;
+
     output << "\tType : " << parc.getType() << std::endl;
     output << "\tPolygone : " << parc.getForme() << std::endl;
     output << "\tProprietaire : " << parc.getProprietaire() << std::endl;
     output << "\tSurface : " << parc.getSurface() << std::endl;
+    output << "\t % constructible : " << parc.getPConstructible() << " % " << std::endl;
     return output;
 }
 

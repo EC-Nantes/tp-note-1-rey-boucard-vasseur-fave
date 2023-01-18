@@ -68,7 +68,9 @@ void test_calculSurface()
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
-void testZU(){
+void test_ZU(){
+    std::cout << " ~~~~~~" << __func__ << "~~~~~~" << std::endl;
+
     Point2D<int> p1(3, 3);
     Point2D<int> p2(1, 3);
     Point2D<int> p3(1, 1);
@@ -80,13 +82,14 @@ void testZU(){
     listeSommets.push_back(p4);
 
     Polygone<int> Poly1(listeSommets);
-    ZU<int> ZoneU(12, "Pierre Dupont", 45, 1, Poly1);
-    std::cout << ZoneU.getPConstructible() << endl;
-    std::cout << ZoneU.getsurfaceConstructible() << endl;
-    std::cout << ZoneU.getsurfaceConstruite() << endl;
+    ZU<int> ZoneU(12, "Pierre Dupont", 50, 200.5, Poly1);
+    std::cout << ZoneU << endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
-void testZA(){
+void test_ZA(){
+    std::cout << " ~~~~~~" << __func__ << "~~~~~~" << std::endl;
+
     Point2D<int> p1(3, 3);
     Point2D<int> p2(1, 3);
     Point2D<int> p3(1, 1);
@@ -99,12 +102,13 @@ void testZA(){
 
     Polygone<int> Poly1(listeSommets);
     ZA<int> ZoneA(12, "Pierre Dupont", "Ble", Poly1);
-    std::cout << ZoneA.getPConstructible() << endl;
-    std::cout << ZoneA.getsurfaceConstructible() << endl;
-    std::cout << ZoneA.gettypeCulture() << endl;
+    std::cout << ZoneA << endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
-void testZAU(){
+void test_ZAU(){
+    std::cout << " ~~~~~~" << __func__ << "~~~~~~" << std::endl;
+
     Point2D<int> p1(3, 3);
     Point2D<int> p2(1, 3);
     Point2D<int> p3(1, 1);
@@ -116,9 +120,29 @@ void testZAU(){
     listeSommets.push_back(p4);
 
     Polygone<int> Poly1(listeSommets);
-    ZAU<int> ZoneAU(12, "Pierre Dupont", 45,  Poly1);
-    std::cout << ZoneAU.getPConstructible() << endl;
-    std::cout << ZoneAU.getsurfaceConstructible() << endl;
+    ZAU<int> ZoneAU(12, "Pierre Dupont", 40, Poly1);
+    std::cout << ZoneAU << endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
+}
+
+void test_ZN(){
+    std::cout << " ~~~~~~" << __func__ << "~~~~~~" << std::endl;
+
+    Point2D<int> p1(3, 3);
+    Point2D<int> p2(1, 3);
+    Point2D<int> p3(1, 1);
+    Point2D<int> p4(3, 1);
+    vector<Point2D<int>> listeSommets;
+    listeSommets.push_back(p1);
+    listeSommets.push_back(p2);
+    listeSommets.push_back(p3);
+    listeSommets.push_back(p4);
+
+    Polygone<int> Poly1(listeSommets);
+    ZN<int> ZoneN(12, "Pierre Dupont",  Poly1);
+    std::cout << ZoneN << std::endl;
+
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
 int getNbwords(std::string line){
@@ -219,6 +243,7 @@ int main(int argc, char const *argv[]) {
     }
     return 0;
 }
+
 
 
 

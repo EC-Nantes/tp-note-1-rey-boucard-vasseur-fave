@@ -48,11 +48,13 @@ void ZN<T>::setType(string type){
 template <typename T>
 std::ostream& operator<<(std::ostream &output, ZN<T> const &parc)
 {
-    output << "Parcelle n°" << parc.getNumero() << " :" << std::endl;
+    output << "Parcelle n*" << parc.getNumero() << " :" << std::endl;
+
     output << "\tType : " << parc.getType() << std::endl;
     output << "\tPolygone : " << parc.getForme() << std::endl;
     output << "\tProprietaire : " << parc.getProprietaire() << std::endl;
     output << "\tSurface : " << parc.getSurface() << std::endl;
+
     return output;
 }
 

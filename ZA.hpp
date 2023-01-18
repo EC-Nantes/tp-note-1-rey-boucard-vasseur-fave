@@ -30,7 +30,7 @@ public:
 
     /*Methods*/
     void setType(string type);
-    string gettypeCulture();
+    string gettypeCulture() const;
     float getsurfaceConstructible(void);
     void surfaceConstructible();
     friend std::ostream& operator<< <T>(std::ostream &, ZA const&);
@@ -58,7 +58,7 @@ void ZA<T>::setType(string type){
 }
 
 template<typename T>
-string ZA<T>::gettypeCulture(){
+string ZA<T>::gettypeCulture() const{
     return this->typeCulture;    
 }
 
@@ -80,11 +80,14 @@ void ZA<T>::surfaceConstructible(){
 template <typename T>
 std::ostream& operator<<(std::ostream &output, ZA<T> const &parc)
 {
-    output << "Parcelle n°" << parc.getNumero() << " :" << std::endl;
+    output << "Parcelle n*" << parc.getNumero() << " :" << std::endl;
+
     output << "\tType : " << parc.getType() << std::endl;
     output << "\tPolygone : " << parc.getForme() << std::endl;
     output << "\tProprietaire : " << parc.getProprietaire() << std::endl;
     output << "\tSurface : " << parc.getSurface() << std::endl;
+    output << "\tType culture : " << parc.gettypeCulture() << std::endl;
+
     return output;
 }
 

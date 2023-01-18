@@ -3,12 +3,12 @@ CC=g++
 all : main
 
 clean :
-	rm *.o
+	del *.o
 
 distclean : clean
-	rm main.exe
+	del main.exe
 
-rebuild : clean all
+rebuild : distclean all
 
 main : *.o
 	$(CC) -o main.exe *.o
