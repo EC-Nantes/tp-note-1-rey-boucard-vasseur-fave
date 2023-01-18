@@ -68,6 +68,8 @@ float ZU<T>::getsurfaceConstructible(){
 
 template<typename T>
 void ZU<T>::surfaceConstructible(){
+    std::random_device rd;  
+    std::mt19937 gen(rd());
     this->surfaceConstructible_ = this->pConstructible * this->getSurface();
     std::uniform_real_distribution<double> dis(1.0f, this->surfaceConstructible_); 
     this->surfaceConstruite = dis(gen);
