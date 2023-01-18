@@ -30,8 +30,8 @@ public:
 
     /*Methods*/
     void setType(string type);
-    float getsurfaceConstructible();
     string gettypeCulture();
+    float getsurfaceConstructible(void);
     void surfaceConstructible();
     friend std::ostream& operator<< <T>(std::ostream &, ZA const&);
 };
@@ -58,19 +58,22 @@ void ZA<T>::setType(string type){
 }
 
 template<typename T>
-float ZA<T>::getsurfaceConstructible(){
-    return this->surfaceConstructible_;    
-}
-
-template<typename T>
 string ZA<T>::gettypeCulture(){
     return this->typeCulture;    
 }
 
 template<typename T>
+float ZA<T>::getsurfaceConstructible(){
+    return this->surfaceConstructible_;    
+}
+
+template<typename T>
 void ZA<T>::surfaceConstructible(){
     this->surfaceConstructible_ =  this->getSurface() * 0.1;
-    if (this->surfaceConstructible_ > 200) this->surfaceConstructible_ = 200;
+    if (this->surfaceConstructible_ > 200){
+        this->surfaceConstructible_ = 200;
+        this->pConstructible = (200 * 100)/this->getSurface();
+    } 
 }
 
 template <typename T>

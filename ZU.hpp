@@ -57,23 +57,25 @@ void ZU<T>::setType(string type_){
 }
 
 template<typename T>
-float ZU<T>::getsurfaceConstructible(){
-    return this->surfaceConstructible_;    
+float ZU<T>::getsurfaceConstruite(){
+    return this->surfaceConstruite;    
 }
 
 template<typename T>
-float ZU<T>::getsurfaceConstruite(){
-    return this->surfaceConstruite;    
+float ZU<T>::getsurfaceConstructible(){
+    return this->surfaceConstructible_;    
 }
 
 template<typename T>
 void ZU<T>::surfaceConstructible(){
     std::random_device rd;  
     std::mt19937 gen(rd()); 
-    std::uniform_real_distribution<double> dist(1.0f, this->getSurface()); 
-    surfaceConstructible_ = dist(gen);
-    std::uniform_real_distribution<double> dis(1.0f, surfaceConstructible_); 
+    std::uniform_real_distribution<double> dist(1.0f, 100.0f); 
+    this->pConstructible = dist(gen);
+    this->surfaceConstructible_ = this->pConstructible * this->getSurface();
+    std::uniform_real_distribution<double> dis(1.0f, this->surfaceConstructible_); 
     surfaceConstruite = dis(gen);
+    this->surfaceConstructible_ -= surfaceConstructible;
 }
 
 template <typename T>

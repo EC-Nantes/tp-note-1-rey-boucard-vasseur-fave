@@ -77,6 +77,7 @@ void testZU(){
 
     Polygone<int> Poly1(listeSommets);
     ZU<int> ZoneU(12, "Pierre Dupont", Poly1);
+    std::cout << ZoneU.getPConstructible() << endl;
     std::cout << ZoneU.getsurfaceConstructible() << endl;
     std::cout << ZoneU.getsurfaceConstruite() << endl;
 }
@@ -94,6 +95,7 @@ void testZA(){
 
     Polygone<int> Poly1(listeSommets);
     ZA<int> ZoneA(12, "Pierre Dupont", "Ble", Poly1);
+    std::cout << ZoneA.getPConstructible() << endl;
     std::cout << ZoneA.getsurfaceConstructible() << endl;
     std::cout << ZoneA.gettypeCulture() << endl;
 }
@@ -111,6 +113,7 @@ void testZAU(){
 
     Polygone<int> Poly1(listeSommets);
     ZAU<int> ZoneAU(12, "Pierre Dupont",  Poly1);
+    std::cout << ZoneAU.getPConstructible() << endl;
     std::cout << ZoneAU.getsurfaceConstructible() << endl;
 }
 
