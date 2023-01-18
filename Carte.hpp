@@ -68,9 +68,9 @@ std::ofstream& operator<<(std::ofstream& file, Carte<T> const &C){
 	string type_parcelle;
     for(auto i = C.list_Parcelles_.begin(); i != C.list_Parcelles_.end(); i++){
         type_parcelle = (*i).getType();
-        file << type_parcelle << (*i).getNumero() << (*i).getProprietaire();
+        file << type_parcelle << " " << (*i).getNumero() << " " << (*i).getProprietaire() << " ";
         if(type_parcelle == "ZU"){
-            file << (*i).getPConstructible() << (*i).getsurfaceConstruite() << std::endl;
+            file << (*i).getPConstructible() << " " << (*i).getsurfaceConstruite() << std::endl;
         }
         else if(type_parcelle == "ZAU"){
             file << (*i).getPConstructible() << std::endl;
