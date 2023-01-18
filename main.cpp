@@ -153,7 +153,7 @@ int main(int argc, char const *argv[]) {
     //testZA();
     //testZAU();
     Carte<int> test("Parcelles_short.txt");
-    //std::cout << "Surface totale" << test.getSurfaceTotale() << std::endl;
+    std::cout << "Surface totale " << test.getSurfaceTotale() << std::endl;
 
     
     return 0;

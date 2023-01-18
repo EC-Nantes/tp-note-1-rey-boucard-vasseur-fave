@@ -31,7 +31,7 @@ template<typename T>
 class Carte {
 protected:
     float surface_totale_;
-    vector<Parcelle<T>> list_Parcelles_;
+    vector<Parcelle<T>*> list_Parcelles_;
 public:
     Carte(std::string file);
 
@@ -40,7 +40,7 @@ public:
     void createSommets(std::string line, vector<Point2D<T>> *Sommets);
     void calculSurfaceTotale(void);
     float getSurfaceTotale() const;
-    vector<Parcelle<T>> getListParcelles() const;
+    vector<Parcelle<T>*> getListParcelles() const;
 	
     friend std::ostream& operator<< <T>(std::ostream& os, Carte<T> const &C);
     friend std::ofstream& operator<< <T>(std::ofstream& file, Carte<T> const &C);
@@ -49,6 +49,7 @@ public:
 template<typename T>
 Carte<T>::Carte(std::string file){
     this->parseFile(file);
+    this->surface_totale_ = 0;
     this->calculSurfaceTotale();
 }
 
@@ -65,7 +66,6 @@ int Carte<T>::getNbwords(std::string line){
 template<typename T>
 void Carte<T>::createSommets(std::string line, vector<Point2D<T>> *Sommets){
     int nbwords = getNbwords(line); //Nombre de sommets de la parcelle
-    std::cout << "Nb mots " << nbwords << std::endl;
     std::istringstream coord(line);
     char a, b, c;
     int x, y;
@@ -81,7 +81,7 @@ template<typename T>
 void Carte<T>::parseFile(std::string filename){
     std::ifstream file(filename);
     std::string line;
-    while (std::getline(file, &line)){
+    while (std::getline(file, line)){
         std::istringstream iss(line);
         std::string word;
         iss >> word;
@@ -103,7 +103,8 @@ void Carte<T>::parseFile(std::string filename){
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
             ZA<int> ZoneA(numero, proprietaire, typeCulture, Poly);
-            list_Parcelles_.push_back(ZoneA);
+            list_Parcelles_.push_back(&ZoneA);
+            std::cout << "ZA" << std::endl;
         }else if (word == "ZU"){
             typeParcelle = word;
             iss >> numero;
@@ -116,7 +117,8 @@ void Carte<T>::parseFile(std::string filename){
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
             ZU<int> ZoneU(numero, proprietaire, pConstructible, surfaceConstruite, Poly);
-            list_Parcelles_.push_back(ZoneU);
+            list_Parcelles_.push_back(&ZoneU);
+            std::cout << "ZU" << std::endl;
         }else if (word == "ZAU"){
             typeParcelle = word;
             iss >> numero;
@@ -129,7 +131,8 @@ void Carte<T>::parseFile(std::string filename){
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
             ZAU<int> ZoneAU(numero, proprietaire, pConstructible, Poly);
-            list_Parcelles_.push_back(ZoneAU);
+            list_Parcelles_.push_back(&ZoneAU);
+            std::cout << "ZAU" << std::endl;
         }else if (word == "ZN"){
             typeParcelle = word;
             iss >> numero;
@@ -142,16 +145,34 @@ void Carte<T>::parseFile(std::string filename){
             createSommets(line, &Sommets);
             Polygone<int> Poly(Sommets);
             ZN<int> ZoneN(numero, proprietaire, Poly);
-            list_Parcelles_.push_back(ZoneN);
+            list_Parcelles_.push_back(&ZoneN);
+            std::cout << "ZN" << std::endl;
         }
     }
 }
 
 template<typename T>
 void Carte<T>::calculSurfaceTotale(){
+    //std::vector<Parcelle<T>*>::iterator it;
+
+     /*   std::cout << this->list_Parcelles_.size() << std::endl;
+    for (int i = 0; i < this->list_Parcelles_.size(); i++){
+        //this->surface_totale_ += list_Parcelles_[i]->getSurface();
+        std::cout << this->list_Parcelles_[i]->getType() << std::endl;
+        std::cout << this->surface_totale_ << std::endl;
+    }*/
+    float surface_temp = 0.0;
+    int i =0;
     for (auto it = this->list_Parcelles_.begin(); it!=this->list_Parcelles_.end(); it++){
-        this->surface_totale_ += it->getSurface();
+        surface_temp += (*it)->getSurface();
+        std::cout << this->list_Parcelles_[i]->getType() << std::endl;
+        std::cout << this->list_Parcelles_[i]->getProprietaire() << std::endl;
+        std::cout << i << std::endl;
+        i++;
     }
+    this->surface_totale_ = surface_temp;
+    std::cout << this->surface_totale_ << std::endl;
+    
 }
 
 template<typename T>
@@ -160,7 +181,7 @@ float Carte<T>::getSurfaceTotale() const{
 }
 
 template<typename T>
-vector<Parcelle<T>> Carte<T>::getListParcelles() const{
+vector<Parcelle<T>*> Carte<T>::getListParcelles() const{
     return this->list_Parcelles_;
 }
 
