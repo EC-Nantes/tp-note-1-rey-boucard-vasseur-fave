@@ -74,8 +74,8 @@ void ZU<T>::surfaceConstructible(){
     this->pConstructible = dist(gen);
     this->surfaceConstructible_ = this->pConstructible * this->getSurface();
     std::uniform_real_distribution<double> dis(1.0f, this->surfaceConstructible_); 
-    surfaceConstruite = dis(gen);
-    this->surfaceConstructible_ -= surfaceConstructible;
+    this->surfaceConstruite = dis(gen);
+    this->surfaceConstructible_ -= this->surfaceConstruite;
 }
 
 template <typename T>
