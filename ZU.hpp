@@ -31,8 +31,8 @@ public:
 
     /* Méthodes */
     void setType(string type_);
-    float getsurfaceConstructible();
-    float getsurfaceConstruite();
+    float getsurfaceConstructible() const;
+    float getsurfaceConstruite() const;
     void surfaceConstructible();
     friend std::ostream& operator<< <T>(std::ostream &, ZU const&);
 };
@@ -57,12 +57,12 @@ void ZU<T>::setType(string type_){
 }
 
 template<typename T>
-float ZU<T>::getsurfaceConstruite(){
+float ZU<T>::getsurfaceConstruite() const {
     return this->surfaceConstruite;    
 }
 
 template<typename T>
-float ZU<T>::getsurfaceConstructible(){
+float ZU<T>::getsurfaceConstructible() const {
     return this->surfaceConstructible_;    
 }
 
@@ -81,11 +81,16 @@ void ZU<T>::surfaceConstructible(){
 template <typename T>
 std::ostream& operator<<(std::ostream &output, ZU<T> const &parc)
 {
-    output << "Parcelle n°" << parc.getNumero() << " :" << std::endl;
+    output << "Parcelle n*" << parc.getNumero() << " :" << std::endl;
+
     output << "\tType : " << parc.getType() << std::endl;
     output << "\tPolygone : " << parc.getForme() << std::endl;
     output << "\tProprietaire : " << parc.getProprietaire() << std::endl;
     output << "\tSurface : " << parc.getSurface() << std::endl;
+    output << "\t% constructible : " << parc.getPConstructible() << " %" << std::endl;
+    output << "\tsurface construite : " << parc.getsurfaceConstruite() << std::endl;
+    output << "\tsurface a construire restante : " << parc.getsurfaceConstructible() << std::endl;
+
     return output;
 }
 
