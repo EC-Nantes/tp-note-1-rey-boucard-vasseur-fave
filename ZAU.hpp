@@ -25,8 +25,8 @@ private:
     float surfaceConstructible_;
 public:
     /* Constructeurs */
-    ZAU(int num, string prop, Polygone<T> forme);
-    ZAU(Parcelle<T> const& parc);
+    ZAU(int num, string prop, int pConstructible_, Polygone<T> forme);
+    ZAU(Parcelle<T> const& parc, int pConstructible_);
 
     /* Méthodes */
     void setType(string type_);
@@ -36,16 +36,16 @@ public:
 };
 
 template<typename T>
-ZAU<T>::ZAU(int num, string prop, Polygone<T> forme) : Parcelle<T> (num, prop, forme){
+ZAU<T>::ZAU(int num, string prop, int pConstructible_, Polygone<T> forme) : Parcelle<T> (num, prop, forme){
     this->setType("ZAU");
-    this->pConstructible = 1;
+    this->pConstructible = pConstructible_;
     this->surfaceConstructible();
 }
 
 template<typename T>
-ZAU<T>::ZAU(Parcelle<T> const& parc) : Parcelle<T> (parc){
+ZAU<T>::ZAU(Parcelle<T> const& parc, int pConstructible_) : Parcelle<T> (parc){
     this->setType("ZAU");
-    this->pConstructible = 1;
+    this->pConstructible = pConstructible_;
     this->surfaceConstructible();
 }
 
@@ -61,10 +61,6 @@ float ZAU<T>::getsurfaceConstructible(){
 
 template<typename T>
 void ZAU<T>::surfaceConstructible(void){
-    std::random_device rd;  
-    std::mt19937 gen(rd()); 
-    std::uniform_real_distribution<double> dist(1.0f, 100.0f); 
-    this->pConstructible = dist(gen);
     this->surfaceConstructible_ = this->getSurface() * this->pConstructible;
 }
 

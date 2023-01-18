@@ -70,6 +70,7 @@ float ZA<T>::getsurfaceConstructible(){
 template<typename T>
 void ZA<T>::surfaceConstructible(){
     this->surfaceConstructible_ =  this->getSurface() * 0.1;
+    this->pConstructible = 10;
     if (this->surfaceConstructible_ > 200){
         this->surfaceConstructible_ = 200;
         this->pConstructible = (200 * 100)/this->getSurface();

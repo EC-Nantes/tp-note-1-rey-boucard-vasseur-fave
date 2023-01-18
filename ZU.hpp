@@ -26,8 +26,8 @@ private:
     float surfaceConstruite;
 public:
     /* Constructeurs */
-    ZU(int num, string prop, Polygone<T> forme);
-    ZU(Parcelle<T> const& parc);
+    ZU(int num, string prop, int pConstructible_, float surfaceConstruite_, Polygone<T> forme);
+    ZU(Parcelle<T> const& parc, int pConstructible_, float surfaceConstruite_);
 
     /* Méthodes */
     void setType(string type_);
@@ -38,16 +38,18 @@ public:
 };
 
 template<typename T>
-ZU<T>::ZU(int num, string prop, Polygone<T> forme) : Parcelle<T> (num, prop, forme){
+ZU<T>::ZU(int num, string prop, int pConstructible_, float surfaceConstruite_, Polygone<T> forme) : Parcelle<T> (num, prop, forme){
     this->setType("ZU");
-    this->pConstructible = 1;
+    this->pConstructible = pConstructible_;
+    this->surfaceConstruite = surfaceConstruite_;
     this->surfaceConstructible();
 }
 
 template<typename T>
-ZU<T>::ZU(Parcelle<T> const& parc) : Parcelle<T> (parc){
+ZU<T>::ZU(Parcelle<T> const& parc, int pConstructible_, float surfaceConstruite_) : Parcelle<T> (parc){
     this->setType("ZU");
-    this->pConstructible = 1;
+    this->pConstructible = pConstructible_;
+    this->surfaceConstruite = surfaceConstruite_;
     this->surfaceConstructible();
 }
 
@@ -69,12 +71,8 @@ float ZU<T>::getsurfaceConstructible() const {
 template<typename T>
 void ZU<T>::surfaceConstructible(){
     std::random_device rd;  
-    std::mt19937 gen(rd()); 
-    std::uniform_real_distribution<double> dist(1.0f, 100.0f); 
-    this->pConstructible = dist(gen);
+    std::mt19937 gen(rd());
     this->surfaceConstructible_ = this->pConstructible * this->getSurface();
-    std::uniform_real_distribution<double> dis(1.0f, this->surfaceConstructible_); 
-    this->surfaceConstruite = dis(gen);
     this->surfaceConstructible_ -= this->surfaceConstruite;
 }
 
