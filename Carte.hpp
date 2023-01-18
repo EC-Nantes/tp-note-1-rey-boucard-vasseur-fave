@@ -25,6 +25,9 @@ template<typename T>
 std::ostream& operator<<(std::ostream &, Carte<T> const&);
 
 template<typename T>
+std::ofstream& operator<<(std::ofstream &, Carte<T> const&);
+
+template<typename T>
 class Carte {
 protected:
     float surface_totale_;
@@ -38,7 +41,9 @@ public:
     void calculSurfaceTotale(void);
     float getSurfaceTotale() const;
     vector<Parcelle<T>> getListParcelles() const;
-	friend std::ostream& operator<< <T>(std::ostream& os, Carte<T> const &C);
+	
+    friend std::ostream& operator<< <T>(std::ostream& os, Carte<T> const &C);
+    friend std::ofstream& operator<< <T>(std::ofstream& file, Carte<T> const &C);
 };
 
 template<typename T>
@@ -163,8 +168,29 @@ template<typename T>
 std::ostream& operator<<(std::ostream& os, Carte<T> const &C){
 	for(auto i = C.list_Parcelles_.begin(); i != C.list_Parcelles_.end(); i++){
         os << *i;
+        os << *i;
     }
 	return os;
+}
+
+template<typename T>
+std::ofstream& operator<<(std::ofstream& file, Carte<T> const &C){
+	string type_parcelle;
+    for(auto i = C.list_Parcelles_.begin(); i != C.list_Parcelles_.end(); i++){
+        type_parcelle = (*i).getType();
+        file << type_parcelle << " " << (*i).getNumero() << " " << (*i).getProprietaire() << " ";
+        if(type_parcelle == "ZU"){
+            file << (*i).getPConstructible() << " " << (*i).getsurfaceConstruite() << std::endl;
+        }
+        else if(type_parcelle == "ZAU"){
+            file << (*i).getPConstructible() << std::endl;
+        }
+        else if(type_parcelle == "ZA"){
+            file << (*i).gettypeCulture() << std::endl;
+        }
+        file << (*i).getForme() << std::endl;
+    }
+	return file;
 }
 
 #endif /*CARTE_HPP*/
