@@ -21,9 +21,6 @@ std::ostream& operator<<(std::ostream &, ZAU<T> const&);
 
 template <typename T>
 class ZAU : public Parcelle<T>, public Constructible{
-private:
-    float surfaceConstructible_;
-    float surfaceConstruite;
 public:
     /* Constructeurs */
     ZAU(int num, string prop, Polygone<T> forme);
@@ -31,7 +28,6 @@ public:
 
     /* Méthodes */
     void setType(string type_);
-    float getsurfaceConstructible(void);
     void surfaceConstructible(void);
     friend std::ostream& operator<< <T>(std::ostream &, ZAU const&);
 };
@@ -56,16 +52,11 @@ void ZAU<T>::setType(string type_){
 }
 
 template<typename T>
-float ZAU<T>::getsurfaceConstructible(void){
-    return this->surfaceConstructible_;    
-}
-
-template<typename T>
 void ZAU<T>::surfaceConstructible(void){
     std::random_device rd;  
     std::mt19937 gen(rd()); 
-    std::uniform_real_distribution<double> dist(1.0f, this->getSurface()); 
-    surfaceConstructible_ = dist(gen);
+    std::uniform_real_distribution<double> dist(1.0f, 100.0f); 
+    this->pConstructible = dist(gen);
 }
 
 template <typename T>
