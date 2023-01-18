@@ -78,7 +78,7 @@ void test_ZU(){
     listeSommets.push_back(p4);
 
     Polygone<int> Poly1(listeSommets);
-    ZU<int> ZoneU(12, "Pierre Dupont", Poly1);
+    ZU<int> ZoneU(12, "Pierre Dupont", 50, 200.5, Poly1);
     std::cout << ZoneU << endl;
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
@@ -116,7 +116,7 @@ void test_ZAU(){
     listeSommets.push_back(p4);
 
     Polygone<int> Poly1(listeSommets);
-    ZAU<int> ZoneAU(12, "Pierre Dupont",  Poly1);
+    ZAU<int> ZoneAU(12, "Pierre Dupont", 40, Poly1);
     std::cout << ZoneAU << endl;
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
