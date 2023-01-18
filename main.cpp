@@ -4,6 +4,7 @@
 #include "ZA.hpp"
 #include "ZN.hpp"
 #include "ZAU.hpp"
+#include "Carte.hpp"
 
 
 void test_creationPoint()
