@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include "Parcelle.hpp"
+#include "ZU.hpp"
+#include "ZA.hpp"
+#include "ZN.hpp"
+#include "ZAU.hpp"
 
 
 void test_creationPoint()
@@ -56,14 +60,67 @@ void test_calculSurface()
 
     Polygone<int> Poly1(listeSommets);
     std::cout << Poly1 << std::endl;
-    Parcelle<int> parc(1, "toto", Poly1);
+    //Parcelle<int> parc(1, "toto", Poly1);
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
+void testZU(){
+    Point2D<int> p1(3, 3);
+    Point2D<int> p2(1, 3);
+    Point2D<int> p3(1, 1);
+    Point2D<int> p4(3, 1);
+    vector<Point2D<int>> listeSommets;
+    listeSommets.push_back(p1);
+    listeSommets.push_back(p2);
+    listeSommets.push_back(p3);
+    listeSommets.push_back(p4);
+
+    Polygone<int> Poly1(listeSommets);
+    ZU<int> ZoneU(12, "Pierre Dupont", Poly1);
+    std::cout << ZoneU.getsurfaceConstructible() << endl;
+    std::cout << ZoneU.getsurfaceConstruite() << endl;
+}
+
+void testZA(){
+    Point2D<int> p1(3, 3);
+    Point2D<int> p2(1, 3);
+    Point2D<int> p3(1, 1);
+    Point2D<int> p4(3, 1);
+    vector<Point2D<int>> listeSommets;
+    listeSommets.push_back(p1);
+    listeSommets.push_back(p2);
+    listeSommets.push_back(p3);
+    listeSommets.push_back(p4);
+
+    Polygone<int> Poly1(listeSommets);
+    ZA<int> ZoneA(12, "Pierre Dupont", "Ble", Poly1);
+    std::cout << ZoneA.getsurfaceConstructible() << endl;
+    std::cout << ZoneA.gettypeCulture() << endl;
+}
+
+void testZAU(){
+    Point2D<int> p1(3, 3);
+    Point2D<int> p2(1, 3);
+    Point2D<int> p3(1, 1);
+    Point2D<int> p4(3, 1);
+    vector<Point2D<int>> listeSommets;
+    listeSommets.push_back(p1);
+    listeSommets.push_back(p2);
+    listeSommets.push_back(p3);
+    listeSommets.push_back(p4);
+
+    Polygone<int> Poly1(listeSommets);
+    ZAU<int> ZoneAU(12, "Pierre Dupont",  Poly1);
+    std::cout << ZoneAU.getsurfaceConstructible() << endl;
+}
+
 int main() {
-    test_creationPoint();
-    test_creationPolygone();
-    test_calculSurface();
+    //test_creationPoint();
+    //test_creationPolygone();
+    //test_calculSurface();
+    //testZU();
+    //testZA();
+    testZAU();
     return 0;
 }
 

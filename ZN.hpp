@@ -17,7 +17,7 @@ template <typename T>
 std::ostream& operator<<(std::ostream &, ZN<T> const&);
 
 template <typename T>
-class ZN : public Parcelle{
+class ZN : public Parcelle<T>{
 public:
     /*Constructeurs*/
     ZN(int num, string prop, Polygone<T> forme);
@@ -29,13 +29,13 @@ public:
 };
 
 template<typename T>
-ZN<T>::ZN(int num, string prop, Polygone<T> forme) : Parcelle(num, prop, forme){
+ZN<T>::ZN(int num, string prop, Polygone<T> forme) : Parcelle<T> (num, prop, forme){
     this->setType("ZN");
     this->pConstructible = 0;
 }
 
 template<typename T>
-ZN<T>::ZN(Parcelle<T> const& parc) : Parcelle(parc){
+ZN<T>::ZN(Parcelle<T> const& parc) : Parcelle<T> (parc){
     this->setType("ZN");
     this->pConstructible = 0;
 }
