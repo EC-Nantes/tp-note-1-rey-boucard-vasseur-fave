@@ -84,9 +84,9 @@ std::ostream& operator<<(std::ostream &output, Polygone<T> const &p)
 {
     output << "Le polygone a pour sommets : {" << std::endl;
     for(auto i = p.sommets_.begin(); i != p.sommets_.end(); i++){
-        output << "p" << i-p.sommets_.begin()+1 << " : " << *i;
+        output << "\tp" << i-p.sommets_.begin()+1 << " : " << *i;
     }
-    output << "}";
+    output << "\t}";
     return output;
 }
 
