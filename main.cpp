@@ -1,12 +1,10 @@
 #include <stdio.h>
-#include "Parcelle.hpp"
+
 #include "ZU.hpp"
 #include "ZA.hpp"
 #include "ZN.hpp"
 #include "ZAU.hpp"
-#include <iostream>
-#include <fstream>
-#include <sstream>
+#include "Carte.hpp"
 
 
 void test_creationPoint()
@@ -145,28 +143,7 @@ void test_ZN(){
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl << std::endl;
 }
 
-int getNbwords(std::string line){
-    int count = 0;
-    for (int i=0; i<line.length(); i++){
-        if (line[i] == ' ' && line[i+1]!=NULL)count++;
-    }
-    count++;
-    return count;
-}
 
-void createSommets(std::string line, vector<Point2D<int>> *Sommets){
-    int nbwords = getNbwords(line); //Nombre de sommets de la parcelle
-    std::cout << "Nb mots " << nbwords << std::endl;
-    std::istringstream coord(line);
-    char a, b, c;
-    int x, y;
-    
-    for (int i=0; i<nbwords; i++){
-        coord >> a >> x >> b >> y >> c; //Extraction des coordonnées x et y dans les variables x et y; a=[ b=; et c=]
-        Point2D<int> pt(x, y);
-        Sommets->push_back(pt);
-    }
-}
 
 int main(int argc, char const *argv[]) {
     //test_creationPoint();
@@ -175,72 +152,10 @@ int main(int argc, char const *argv[]) {
     //testZU();
     //testZA();
     //testZAU();
-    std::ifstream file(argv[1], std::ios::binary);
-    std::string line;
-    while (std::getline(file, line)){
-        std::istringstream iss(line);
-        std::string word;
-        iss >> word;
-        std::string typeParcelle;
-        int numero;
-        std::string proprietaire;
-        std::string typeCulture;
-        int pConstructible;
-        float surfaceConstruite;
+    Carte<int> test("Parcelles_short.txt");
+    //std::cout << "Surface totale" << test.getSurfaceTotale() << std::endl;
 
-        if (word == "ZA"){
-            typeParcelle = word;
-            iss >> numero;
-            iss >> proprietaire;
-            iss >> typeCulture;
-            vector<Point2D<int>> Sommets;
-
-            std::getline(file, line);
-            createSommets(line, &Sommets);
-            Polygone<int> Poly(Sommets);
-            ZA<int> ZoneA(numero, proprietaire, typeCulture, Poly);
-            std::cout << ZoneA;
-        }else if (word == "ZU"){
-            typeParcelle = word;
-            iss >> numero;
-            iss >> proprietaire;
-            iss >> pConstructible;
-            iss >> surfaceConstruite;
-            vector<Point2D<int>> Sommets;
-
-            std::getline(file, line);
-            createSommets(line, &Sommets);
-            Polygone<int> Poly(Sommets);
-            ZU<int> ZoneU(numero, proprietaire, pConstructible, surfaceConstruite, Poly);
-            std::cout << ZoneU;
-        }else if (word == "ZAU"){
-            typeParcelle = word;
-            iss >> numero;
-            iss >> proprietaire;
-            iss >> pConstructible;
-            iss >> surfaceConstruite;
-            vector<Point2D<int>> Sommets;
-
-            std::getline(file, line);
-            createSommets(line, &Sommets);
-            Polygone<int> Poly(Sommets);
-            ZAU<int> ZoneAU(numero, proprietaire, pConstructible, Poly);
-            std::cout << ZoneAU;
-        }else if (word == "ZN"){
-            typeParcelle = word;
-            iss >> numero;
-            iss >> proprietaire;
-            iss >> pConstructible;
-            iss >> surfaceConstruite;
-            vector<Point2D<int>> Sommets;
-
-            std::getline(file, line);
-            createSommets(line, &Sommets);
-            Polygone<int> Poly(Sommets);
-            ZN<int> ZoneN(numero, proprietaire, Poly);
-            std::cout << ZoneN;
-        }
-    }
+    
     return 0;
 }
 
