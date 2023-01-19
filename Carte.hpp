@@ -187,13 +187,13 @@ std::ofstream& operator<<(std::ofstream& file, Carte<T> const &C){
         type_parcelle = (*i)->getType();
         file << type_parcelle << " " << (*i)->getNumero() << " " << (*i)->getProprietaire() << " ";
         if(type_parcelle == "ZU"){
-            file << (*i)->getPConstructible() << " " /*<< (*i)->getsurfaceConstruite()*/ << std::endl;
+            file << (*i)->getPConstructible() << " " << dynamic_cast<ZU<T>*>(*i)->getsurfaceConstruite() << std::endl;
         }
         else if(type_parcelle == "ZAU"){
             file << (*i)->getPConstructible() << std::endl;
         }
         else if(type_parcelle == "ZA"){
-            file << /*(*i)->gettypeCulture() <<*/ std::endl;
+            file << dynamic_cast<ZA<T>*>(*i)->gettypeCulture() << std::endl;
         }
         else if(type_parcelle == "ZN"){
             file << std::endl;
